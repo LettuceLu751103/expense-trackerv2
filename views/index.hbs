@@ -13,21 +13,23 @@
   </div>
 
 </div>
-<div class="row">
+<div class="row align-items-center">
 
   <div class="col-1">總金額:</div>
-  <div class="col-4 h2 text-danger">256260</div>
+  <div class="col-4 h2 text-danger">{{totalAmount}}</div>
 
 </div>
+{{#each lists}}
 <div class="row mt-3 mb-1 align-items-center ">
 
-  <div class="col-md-1 text-center"><i class="fas fa-utensils"></i></div>
+  <div class="col-md-1 text-center">{{{this.type}}}</div>
+  <div></div>
   <div class="col-md-6">
-    <div>午餐</div>
-    <div>2019/04/23</div>
+    <div>{{this.name}}</div>
+    <div>{{this.date}}</div>
   </div>
-  <div class="col-md-1">60</div>
-  <div class="col-md-2"><a href="" class="btn btn-primary">修改</a></div>
+  <div class="col-md-1">{{this.amount}}</div>
+  <div class="col-md-2"><a href="/{{this._id}}/edit" class="btn btn-primary">修改</a></div>
   <div class="col-md-2">
     <form action="">
       <button class="btn btn-danger">刪除</button>
@@ -35,7 +37,7 @@
   </div>
 
 </div>
-
+{{/each}}
 <div class="row mt-3">
   <a href="/new" class="btn btn-outline-secondary btn-lg btn-block mt-3">新增支出</a>
 </div>
