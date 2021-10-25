@@ -99,6 +99,19 @@ app.post('/:id/edit', (req, res) => {
 
 })
 
+app.post('/:id/delete', (req, res) => {
+  const id = req.params.id
+  console.log(id)
+  List.findById(id)
+    .then(removeData => {
+      removeData.remove()
+      console.log('刪除資料')
+      res.redirect('/')
+    })
+    .catch(error => {
+      console.log(error)
+    })
+})
 app.listen(3000, () => {
   console.log('This is http server running on http://localhost:3000')
 })

@@ -31,7 +31,7 @@
   <div class="col-md-1">{{this.amount}}</div>
   <div class="col-md-2"><a href="/{{this._id}}/edit" class="btn btn-primary">修改</a></div>
   <div class="col-md-2">
-    <form action="">
+    <form action="/{{this._id}}/delete" method="POST">
       <button class="btn btn-danger">刪除</button>
     </form>
   </div>
