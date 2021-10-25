@@ -1,17 +1,24 @@
 <div class="row mt-5">
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <label class="input-group-text" for="inputGroupSelect01">類別</label>
-    </div>
-    <select class="custom-select" id="inputGroupSelect01">
-      <option selected>全部</option>
-      <option value="1">家居物業</option>
-      <option value="2">交通出行</option>
-      <option value="3">餐飲食品</option>
-      <option value="4">其他</option>
-    </select>
-  </div>
+  <form action="/" method="GET">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">類別</label>
+      </div>
+      <select class="custom-select" id="inputGroupSelect01" name="type">
+        <option value="0" selected>全部</option>
+        <option value='<i class="fas fa-home"></i>'>家居物業</option>
+        <option value='<i class="fas fa-shuttle-van"></i>'>交通出行</option>
+        <option value='<i class="fas fa-grin-beam"></i>'>休閒娛樂</option>
+        <option value='<i class="fas fa-utensils"></i>'>餐飲食品</option>
+        <option value='<i class="fas fa-pen"></i>'>其他</option>
+      </select>
+      <div class="input-group-append">
+        <button type="submit" class="btn btn-success rounded-right" type="button">點擊搜尋</button>
+      </div>
 
+    </div>
+
+  </form>
 </div>
 <div class="row align-items-center">
 
@@ -24,13 +31,13 @@
 
   <div class="col-md-1 text-center">{{{this.type}}}</div>
   <div></div>
-  <div class="col-md-6">
+  <div class="col-md-7">
     <div>{{this.name}}</div>
     <div>{{this.date}}</div>
   </div>
-  <div class="col-md-1">{{this.amount}}</div>
-  <div class="col-md-2"><a href="/{{this._id}}/edit" class="btn btn-primary">修改</a></div>
-  <div class="col-md-2">
+  <div class="col-md-2">{{this.amount}}</div>
+  <div class="col-md-1"><a href="/{{this._id}}/edit" class="btn btn-primary">修改</a></div>
+  <div class="col-md-1">
     <form action="/{{this._id}}/delete" method="POST">
       <button class="btn btn-danger">刪除</button>
     </form>
@@ -41,3 +48,72 @@
 <div class="row mt-3">
   <a href="/new" class="btn btn-outline-secondary btn-lg btn-block mt-3">新增支出</a>
 </div>
+
+<script>
+  const selectOption = document.querySelector('#inputGroupSelect01')
+
+  const listICON = `{{{searchItem.type}}}`
+  console.log(listICON)
+
+  updateListIcon(listICON)
+
+  // 判斷下拉選單函式
+  function updateListIcon(listICON) {
+    if (listICON === '<i class="fas fa-home"></i>') {
+      selectOption.innerHTML = `
+    <option  value="0">全部</option>
+    <option value='<i class="fas fa-home"></i>' selected>家居物業</option>
+    <option value='<i class="fas fa-shuttle-van"></i>'>交通出行</option>
+    <option value='<i class="fas fa-grin-beam"></i>'> 休閒娛樂</option>
+    <option value='<i class="fas fa-utensils"></i>'>餐飲食品</option>
+    <option value='<i class="fas fa-pen"></i>'>其他</option>
+    `
+    } else if (listICON === '<i class="fas fa-shuttle-van"></i>') {
+      selectOption.innerHTML = `
+    <option  value="0">全部</option>
+    <option value='<i class="fas fa-home"></i>'>家居物業</option>
+    <option value='<i class="fas fa-shuttle-van"></i>' selected>交通出行</option>
+    <option value='<i class="fas fa-grin-beam"></i>'> 休閒娛樂</option>
+    <option value='<i class="fas fa-utensils"></i>'>餐飲食品</option>
+    <option value='<i class="fas fa-pen"></i>'>其他</option>
+    `
+    } else if (listICON === '<i class="fas fa-grin-beam"></i>') {
+      selectOption.innerHTML = `
+    <option  value="0">全部</option>
+    <option value='<i class="fas fa-home"></i>'>家居物業</option>
+    <option value='<i class="fas fa-shuttle-van"></i>'>交通出行</option>
+    <option value='<i class="fas fa-grin-beam"></i>' selected> 休閒娛樂</option>
+    <option value='<i class="fas fa-utensils"></i>'>餐飲食品</option>
+    <option value='<i class="fas fa-pen"></i>'>其他</option>
+    `
+    } else if (listICON === '<i class="fas fa-utensils"></i>') {
+      selectOption.innerHTML = `
+    <option value="0">全部</option>
+    <option value='<i class="fas fa-home"></i>'>家居物業</option>
+    <option value='<i class="fas fa-shuttle-van"></i>'>交通出行</option>
+    <option value='<i class="fas fa-grin-beam"></i>'> 休閒娛樂</option>
+    <option value='<i class="fas fa-utensils"></i>' selected> 餐飲食品</option>
+    <option value='<i class="fas fa-pen"></i>'>其他</option>
+    `
+    } else if (listICON === '') {
+      selectOption.innerHTML = `
+    <option value="0" selected>全部</option>
+    <option value='<i class="fas fa-home"></i>'>家居物業</option>
+    <option value='<i class="fas fa-shuttle-van"></i>'>交通出行</option>
+    <option value='<i class="fas fa-grin-beam"></i>'> 休閒娛樂</option>
+    <option value='<i class="fas fa-utensils"></i>'> 餐飲食品</option>
+    <option value='<i class="fas fa-pen"></i>'>其他</option>
+    `
+    } else {
+      selectOption.innerHTML = `
+    <option  value="0">全部</option>
+    <option value='<i class="fas fa-home"></i>'>家居物業</option>
+    <option value='<i class="fas fa-shuttle-van"></i>'>交通出行</option>
+    <option value='<i class="fas fa-grin-beam"></i>'> 休閒娛樂</option>
+    <option value='<i class="fas fa-utensils"></i>'>餐飲食品</option>
+    <option value='<i class="fas fa-pen"></i>' selected>其他</option>
+    `
+    }
+  }
+
+</script>

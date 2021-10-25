@@ -29,20 +29,26 @@ const List = require('./models/list')
 
 
 app.get('/', (req, res) => {
-  List.find().lean()
+  let searchItem = req.query || {}
+  if (searchItem.type === '0') {
+    searchItem = {}
+  }
+  console.log(searchItem)
+  List.find(searchItem)
+    .lean()
     .then(lists => {
       // console.log(lists)
       let totalAmount = 0
       lists.forEach(list => {
         totalAmount += Number(list.amount)
       })
-      console.log(totalAmount)
-      res.render('index', { lists, totalAmount })
+      res.render('index', { lists, totalAmount, searchItem })
     })
     .catch(error => {
       console.log(error)
     })
 })
+
 
 app.get('/new', (req, res) => {
   res.render('new')
