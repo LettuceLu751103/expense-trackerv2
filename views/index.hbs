@@ -36,9 +36,9 @@
     <div>{{this.date}}</div>
   </div>
   <div class="col-md-2">{{this.amount}}</div>
-  <div class="col-md-1 mt-1 mb-2"><a href="/{{this._id}}/edit" class="btn btn-primary btn-block">修改</a></div>
+  <div class="col-md-1 mt-1 mb-2"><a href="/todo/{{this._id}}/edit" class="btn btn-primary btn-block">修改</a></div>
   <div class="col-md-1 mt-1 mb-2">
-    <form action="/{{this._id}}?_method=DELETE" method="POST">
+    <form action="/todo/{{this._id}}?_method=DELETE" method="POST">
       <button class="btn btn-danger btn-block">刪除</button>
     </form>
   </div>
@@ -46,7 +46,7 @@
 </div>
 {{/each}}
 <div class="row mt-3 mb-5">
-  <a href="/new" class="btn btn-outline-secondary btn-lg btn-block mt-3">新增支出</a>
+  <a href="/todo/new" class="btn btn-outline-secondary btn-lg btn-block mt-3">新增支出</a>
 </div>
 
 <script>
