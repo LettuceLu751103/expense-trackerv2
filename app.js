@@ -7,7 +7,10 @@ mongoose.connect('mongodb://localhost/expense-tracker')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 
+const methodOverride = require('method-override')
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
+
 
 // setting template engine
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
@@ -33,7 +36,6 @@ app.get('/', (req, res) => {
   if (searchItem.type === '0') {
     searchItem = {}
   }
-  console.log(searchItem)
   List.find(searchItem)
     .lean()
     .then(lists => {
@@ -84,7 +86,8 @@ app.get('/:id/edit', (req, res) => {
 
 })
 
-app.post('/:id/edit', (req, res) => {
+app.put('/:id', (req, res) => {
+  // console.log('進到修改資料區')
   const id = req.params.id
   const { name, date, type, amount } = req.body
   // console.log(`name: ${name}, date: ${date}, type: ${type}, amount: ${amount}`)
@@ -105,7 +108,7 @@ app.post('/:id/edit', (req, res) => {
 
 })
 
-app.post('/:id/delete', (req, res) => {
+app.delete('/:id', (req, res) => {
   const id = req.params.id
   console.log(id)
   List.findById(id)
@@ -118,6 +121,10 @@ app.post('/:id/delete', (req, res) => {
       console.log(error)
     })
 })
+
+
+
+
 app.listen(3000, () => {
   console.log('This is http server running on http://localhost:3000')
 })
