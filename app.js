@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 const routes = require('./routes')
 const db = require('./config/mongoose')
-
+const session = require('express-session')
 
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
@@ -11,7 +11,11 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
-
+app.use(session({
+  secret: "ThisIsMySecret",
+  resave: false,
+  saveUninitialized: true
+}))
 
 // setting template engine
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
