@@ -1,24 +1,31 @@
-<div class="row mt-5">
-  <form action="/" method="GET">
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <label class="input-group-text" for="inputGroupSelect01">類別</label>
-      </div>
-      <select class="custom-select" id="inputGroupSelect01" name="type">
-        <option value="0" selected>全部</option>
-        <option value='<i class="fas fa-home"></i>'>家居物業</option>
-        <option value='<i class="fas fa-shuttle-van"></i>'>交通出行</option>
-        <option value='<i class="fas fa-grin-beam"></i>'>休閒娛樂</option>
-        <option value='<i class="fas fa-utensils"></i>'>餐飲食品</option>
-        <option value='<i class="fas fa-pen"></i>'>其他</option>
-      </select>
-      <div class="input-group-append">
-        <button type="submit" class="btn btn-success rounded-right" type="button">點擊搜尋</button>
+<div class="row mt-5 justify-content-between">
+  <div class="col-md-12">
+    <form action="/" method="GET">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">類別</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect01" name="type">
+          <option value="0" selected>全部</option>
+          <option value='<i class="fas fa-home"></i>'>家居物業</option>
+          <option value='<i class="fas fa-shuttle-van"></i>'>交通出行</option>
+          <option value='<i class="fas fa-grin-beam"></i>'>休閒娛樂</option>
+          <option value='<i class="fas fa-utensils"></i>'>餐飲食品</option>
+          <option value='<i class="fas fa-pen"></i>'>其他</option>
+        </select>
+        <div class="input-group-append">
+          <button type="submit" class="btn btn-success rounded-right" type="button">點擊搜尋</button>
+        </div>
+
       </div>
 
-    </div>
+    </form>
+  </div>
+  {{!-- <div class="col-md-2 ">
+    <a href="/todos/new" class="btn btn-primary mb-3">Create</a>
+  </div> --}}
 
-  </form>
+
 </div>
 <div class="row align-items-center">
 
