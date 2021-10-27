@@ -4,6 +4,7 @@ const app = express()
 const routes = require('./routes')
 const db = require('./config/mongoose')
 const session = require('express-session')
+const usePassport = require('./config/passport')
 
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
@@ -20,6 +21,9 @@ app.use(session({
 // setting template engine
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
+
+usePassport(app)
+
 
 // 將 request 導進 routes
 app.use(routes)
