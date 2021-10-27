@@ -11,12 +11,13 @@ router.get('/new', (req, res) => {
 
 router.post('/new', (req, res) => {
   const { name, date, type, amount } = req.body
-
+  const userId = req.user._id
   return List.create({
     name: name,
     date: date,
     type: type,
-    amount: amount
+    amount: amount,
+    userId: userId
   }).then(() => {
     res.redirect('/')
   }).catch(err => {
@@ -25,9 +26,10 @@ router.post('/new', (req, res) => {
 })
 
 router.get('/:id/edit', (req, res) => {
-  const id = req.params.id
-  console.log(id)
-  List.findById(id)
+  const _id = req.params.id
+  const userId = req.user._id
+
+  List.findOne({ _id, userId })
     .lean()
     .then(list => {
       console.log(list)
@@ -41,15 +43,17 @@ router.get('/:id/edit', (req, res) => {
 
 router.put('/:id', (req, res) => {
   // console.log('進到修改資料區')
-  const id = req.params.id
+  const _id = req.params.id
+  const userId = req.user._id
   const { name, date, type, amount } = req.body
   // console.log(`name: ${name}, date: ${date}, type: ${type}, amount: ${amount}`)
-  List.findById(id)
+  List.findOne({ _id, userId })
     .then(originData => {
       originData.name = name,
         originData.date = date,
         originData.type = type,
-        originData.amount = amount
+        originData.amount = amount,
+        originData.userId = userId
       return originData.save()
     })
     .then(() => {
@@ -63,9 +67,9 @@ router.put('/:id', (req, res) => {
 
 
 router.delete('/:id', (req, res) => {
-  const id = req.params.id
-  console.log(id)
-  List.findById(id)
+  const _id = req.params.id
+  const userId = req.user._id
+  List.findOne({ _id, userId })
     .then(removeData => {
       removeData.remove()
       console.log('刪除資料')
