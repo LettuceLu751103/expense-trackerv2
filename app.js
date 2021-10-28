@@ -14,17 +14,20 @@ const flash = require('connect-flash')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(session({
-  secret: "ThisIsMySecret",
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
-
+require('dotenv').config()
 // setting template engine
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
 usePassport(app)
 app.use(flash())  // 掛載套件
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 app.use((req, res, next) => {
   // 你可以在這裡 console.log(req.user) 等資訊來觀察
   res.locals.isAuthenticated = req.isAuthenticated()
@@ -41,6 +44,6 @@ app.use(routes)
 
 
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   console.log('This is http server running on http://localhost:3000')
 })
