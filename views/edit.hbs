@@ -26,7 +26,7 @@
       <label for="inputState">類別</label>
     </div>
     <div class="col-md-8">
-      <select id="inputState" class="form-control" name="type" required>
+      <select id="inputState" class="form-control" name="categoryName" required>
 
       </select>
     </div>
@@ -53,8 +53,9 @@
 
 <script>
   const selectOption = document.querySelector('#inputState')
-  const listICON = `{{{list.type}}}`
+  const listICON = `{{{list.categoryId.name}}}`
 
+  console.log(listICON)
   // 呼叫變更下拉選單
   updateListIcon(listICON)
 
@@ -67,50 +68,50 @@
 
   // 判斷下拉選單函式
   function updateListIcon(listICON) {
-    if (listICON === '<i class="fas fa-home"></i>') {
-      selectOption.innerHTML = `
-    <option  value="">Select</option>
-    <option value='<i class="fas fa-home"></i>' selected>家居物業</option>
-    <option value='<i class="fas fa-shuttle-van"></i>'>交通出行</option>
-    <option value='<i class="fas fa-grin-beam"></i>'> 休閒娛樂</option>
-    <option value='<i class="fas fa-utensils"></i>'>餐飲食品</option>
-    <option value='<i class="fas fa-pen"></i>'>其他</option>
-    `
-    } else if (listICON === '<i class="fas fa-shuttle-van"></i>') {
-      selectOption.innerHTML = `
-    <option  value="">Select</option>
-    <option value='<i class="fas fa-home"></i>'>家居物業</option>
-    <option value='<i class="fas fa-shuttle-van"></i>' selected>交通出行</option>
-    <option value='<i class="fas fa-grin-beam"></i>'> 休閒娛樂</option>
-    <option value='<i class="fas fa-utensils"></i>'>餐飲食品</option>
-    <option value='<i class="fas fa-pen"></i>'>其他</option>
-    `
-    } else if (listICON === '<i class="fas fa-grin-beam"></i>') {
-      selectOption.innerHTML = `
-    <option  value="">Select</option>
-    <option value='<i class="fas fa-home"></i>'>家居物業</option>
-    <option value='<i class="fas fa-shuttle-van"></i>'>交通出行</option>
-    <option value='<i class="fas fa-grin-beam"></i>' selected> 休閒娛樂</option>
-    <option value='<i class="fas fa-utensils"></i>'>餐飲食品</option>
-    <option value='<i class="fas fa-pen"></i>'>其他</option>
-    `
-    } else if (listICON === '<i class="fas fa-utensils"></i>') {
+    if (listICON === '家居物業') {
       selectOption.innerHTML = `
     <option value="">Select</option>
-    <option value='<i class="fas fa-home"></i>'>家居物業</option>
-    <option value='<i class="fas fa-shuttle-van"></i>'>交通出行</option>
-    <option value='<i class="fas fa-grin-beam"></i>'> 休閒娛樂</option>
-    <option value='<i class="fas fa-utensils"></i>' selected> 餐飲食品</option>
-    <option value='<i class="fas fa-pen"></i>'>其他</option>
+    <option value='家居物業' selected>家居物業</option>
+    <option value='交通出行'>交通出行</option>
+    <option value='休閒娛樂'>休閒娛樂</option>
+    <option value='餐飲食品'>餐飲食品</option>
+    <option value='其他'>其他</option>
+    `
+    } else if (listICON === '交通出行') {
+      selectOption.innerHTML = `
+    <option  value="">Select</option>
+    <option value='家居物業'>家居物業</option>
+    <option value='交通出行' selected>交通出行</option>
+    <option value='休閒娛樂'>休閒娛樂</option>
+    <option value='餐飲食品'>餐飲食品</option>
+    <option value='其他'>其他</option>
+    `
+    } else if (listICON === '休閒娛樂') {
+      selectOption.innerHTML = `
+    <option  value="">Select</option>
+    <option value='家居物業'>家居物業</option>
+    <option value='交通出行'>交通出行</option>
+    <option value='休閒娛樂' selected>休閒娛樂</option>
+    <option value='餐飲食品'>餐飲食品</option>
+    <option value='其他'>其他</option>
+    `
+    } else if (listICON === '餐飲食品') {
+      selectOption.innerHTML = `
+    <option value="">Select</option>
+    <option value='家居物業'>家居物業</option>
+    <option value='交通出行'>交通出行</option>
+    <option value='休閒娛樂'> 休閒娛樂</option>
+    <option value='餐飲食品' selected> 餐飲食品</option>
+    <option value='其他'>其他</option>
     `
     } else {
       selectOption.innerHTML = `
     <option  value="">Select</option>
-    <option value='<i class="fas fa-home"></i>'>家居物業</option>
-    <option value='<i class="fas fa-shuttle-van"></i>'>交通出行</option>
-    <option value='<i class="fas fa-grin-beam"></i>'> 休閒娛樂</option>
-    <option value='<i class="fas fa-utensils"></i>'>餐飲食品</option>
-    <option value='<i class="fas fa-pen"></i>' selected>其他</option>
+    <option value='家居物業'>家居物業</option>
+    <option value='交通出行'>交通出行</option>
+    <option value='休閒娛樂'> 休閒娛樂</option>
+    <option value='餐飲食品'>餐飲食品</option>
+    <option value='其他' selected>其他</option>
     `
     }
   }

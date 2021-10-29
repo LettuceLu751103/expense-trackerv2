@@ -11,6 +11,7 @@ const bodyParser = require('body-parser')
 
 const methodOverride = require('method-override')
 const flash = require('connect-flash')
+require('dotenv').config()
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(session({
@@ -18,7 +19,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
-require('dotenv').config()
+
 // setting template engine
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
