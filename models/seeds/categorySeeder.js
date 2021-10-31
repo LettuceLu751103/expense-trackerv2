@@ -29,18 +29,22 @@ const fakeData = [{
 
 
 db.once('open', () => {
-  fakeData.forEach(data => {
-    category.create(data)
-      .then(() => {
-        console.log('=== prepare add seed to the db ===')
-        console.log(`name: ${data.name} `)
-        console.log(`type: ${data.css} `)
-        console.log('=== already add seed to the db ===')
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  })
 
-  console.log('done')
+  return Promise.all(fakeData)
+    .then(data => {
+      console.log(data)
+      return category.create(data)
+        .then(() => {
+          console.log('data 寫入成功')
+        })
+        .catch(err => { console.log(err) })
+    })
+    .then(() => {
+      console.log('done')
+      process.exit()
+    })
+    .catch(err => {
+      console.log(err)
+    })
+
 })

@@ -3,6 +3,7 @@ const list = require('../list')
 const User = require('../user')
 const Category = require('../category')
 const bcrypt = require('bcryptjs')
+const category = require('../category')
 
 const SEED_USER = {
   name: 'root',
@@ -10,14 +11,8 @@ const SEED_USER = {
   password: '12345678'
 }
 
-listData = {
-  name: '房租',
-  date: '2021-10-24',
-  type: "1",
-  amount: '45000',
-}
 
-const fakeData = [{
+const fakeDatas = [{
   name: '房租',
   date: '2021-10-24',
   amount: '45000',
@@ -61,39 +56,33 @@ db.once('open', () => {
     }))
     .then(user => {
       const userId = user._id
-
-      fakeData.forEach(data => {
-        console.log('=== in ===')
-        console.log(data.type)
-        console.log('=== out ===')
-        const type = data.type
-        Category.findOne({ type })
-          .lean()
-          .then(categoryData => {
-            console.log(data)
-            console.log(userId)
-            console.log(categoryData._id)
-            const categoryId = categoryData._id
-            list.create({ name: data.name, date: data.date, amount: data.amount, userId, categoryId })
-              .then(() => {
-                console.log('資料新增成功')
-              })
-              .catch(error => {
-                console.log(error)
-              })
+      Promise.all(fakeDatas)
+        .then(fakeData => {
+          fakeData.map(async singleData => {
+            const categoryId = await category.findOne({ type: singleData.type })
+            const record = {
+              userId,
+              categoryId: categoryId._id,
+              name: singleData.name,
+              date: singleData.date,
+              amount: singleData.amount
+            }
+            console.log(record)
+            await list.create(record)
+            console.log('record seeder done!')
+            process.exit()
           })
-          .catch(error => {
-            console.log(error)
-          })
-      })
 
+        })
 
 
     })
-    .then(() => {
-      console.log('done.')
-
+    .catch(error => {
+      console.log(error)
     })
+
+
+
 })
 
-// process.exit()
+

@@ -13,8 +13,10 @@ router.get('/new', (req, res) => {
 router.post('/new', (req, res) => {
   const { name, date, categoryName, amount } = req.body
   const userId = req.user._id
+
   Categorys.findOne({ name: categoryName })
     .then(category => {
+      console.log(category)
       const categoryId = category._id
       return List.create({
         name: name,
