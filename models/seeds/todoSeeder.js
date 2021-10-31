@@ -1,7 +1,6 @@
 const db = require('../../config/mongoose')
 const list = require('../list')
 const User = require('../user')
-const Category = require('../category')
 const bcrypt = require('bcryptjs')
 const category = require('../category')
 
@@ -74,6 +73,7 @@ db.once('open', () => {
           })
 
         })
+        .catch(err => { console.log(err) })
 
 
     })
