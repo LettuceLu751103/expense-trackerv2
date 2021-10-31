@@ -1,6 +1,14 @@
 const mongoose = require('mongoose') // 載入 mongoose
 
-mongoose.connect('mongodb://localhost/expense-tracker', { useNewUrlParser: true, useUnifiedTopology: true })
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
+const MONGODB_URL = process.env.MONGODB_URI
+mongoose.connect(MONGODB_UR, { useNewUrlParser: true, useUnifiedTopology: true })
+
+
+
 
 // 取得資料庫連線狀態
 const db = mongoose.connection
