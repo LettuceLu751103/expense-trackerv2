@@ -8,9 +8,10 @@ const Category = require('../../models/category')
 
 
 router.get('/', (req, res) => {
-
+  console.log(process.env.PORT)
   const userId = req.user._id
   console.log(req.user._id)
+  const fqdnPort = process.env.PORT
   List.find({ userId })
     .populate({ path: 'categoryId', select: 'css' })
     .lean()
@@ -20,7 +21,7 @@ router.get('/', (req, res) => {
       lists.forEach(list => {
         totalAmount += Number(list.amount)
       })
-      res.render('index', { lists, totalAmount })
+      res.render('index', { lists, totalAmount, fqdnPort })
     })
     .catch(error => {
       console.log(error)
