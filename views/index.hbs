@@ -64,7 +64,8 @@
   const mainArea = document.querySelector('#mainArea')
   selectOption.addEventListener('change', (event) => {
     const categoryName = event.target.value
-    axios.get(`http://localhost:3000/todo/searchItem`, { params: { categoryName: categoryName } })
+    const onlineFQDN = 'https://expense-tracker-v2.herokuapp.com/'
+    axios.get(`${onlineFQDN} + /todo/searchItem`, { params: { categoryName: categoryName } })
       .then(res => {
         totalAmount.innerHTML = `${res.data.totalAmount}`
         let rawHTML = ''
