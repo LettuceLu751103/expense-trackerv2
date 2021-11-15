@@ -20,6 +20,7 @@ router.post('/new', (req, res) => {
     .then(category => {
       console.log(category)
       const categoryId = category._id
+      console.log(categoryId)
       return List.create({
         name: name,
         date: date,
