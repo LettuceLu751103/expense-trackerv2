@@ -15,6 +15,7 @@ router.post('/new', (req, res) => {
   console.log(req.user.id)
   const userId = req.user._id
   console.log(req.user._id)
+  console.log(categoryName)
   Categorys.findOne({ name: categoryName })
     .then(category => {
       console.log(category)
