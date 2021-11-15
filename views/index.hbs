@@ -66,7 +66,8 @@
   console.log(fqdnPort)
   selectOption.addEventListener('change', (event) => {
     const categoryName = event.target.value
-    const onlineFQDN = `https://expense-tracker-v2.herokuapp.com:+${fqdnPort}`
+    const onlineFQDN = `https://expense-tracker-v2.herokuapp.com:${fqdnPort}`
+    console.log(onlineFQDN)
     axios.get(`${onlineFQDN}/todo/searchItem`, { params: { categoryName: categoryName } })
       .then(res => {
         totalAmount.innerHTML = `${res.data.totalAmount}`
