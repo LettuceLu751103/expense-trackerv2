@@ -10,7 +10,7 @@ const Category = require('../../models/category')
 router.get('/', (req, res) => {
 
   const userId = req.user._id
-
+  console.log(req.user._id)
   List.find({ userId })
     .populate({ path: 'categoryId', select: 'css' })
     .lean()

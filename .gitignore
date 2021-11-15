@@ -8,6 +8,7 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 .env
+.pwd
 
 # npm
 node_modules
