@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
       lists.forEach(list => {
         totalAmount += Number(list.amount)
       })
-      res.render('index', { lists, totalAmount, fqdnPort })
+      res.render('index', { lists, totalAmount })
     })
     .catch(error => {
       console.log(error)
